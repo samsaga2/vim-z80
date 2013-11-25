@@ -4,7 +4,7 @@ set isk=a-z,A-Z,48-57,',.,_
 
 syn sync fromstart
 
-"Common Z80 Assembly instructions
+" Common Z80 Assembly instructions
 syn keyword z80Inst adc add and bit call ccf cp cpd cpdr cpi cpir cpl
 syn keyword z80Inst daa dec di djnz ei ex exx halt im in
 syn keyword z80Inst inc ind ini indr inir jp jr ld ldd lddr ldi ldir
@@ -13,10 +13,7 @@ syn keyword z80Inst res ret reti retn rl rla rlc rlca rld
 syn keyword z80Inst rr rra rrc rrca rrd rst sbc scf set sl1 sla slia sll sra
 syn keyword z80Inst srl sub xor
 
-" sjasmplus inst
-syn keyword z80Inst sli exa 
-
-"Grab the condition too
+" Grab the condition too
 syn match z80Inst "\s\+jp\s\+n\=[covz]\>" "Match Z C O V NZ NC NO NV
 syn match z80Inst "\s\+jp\s\+p[elo]\=\>" "Match P PE PO PL
 syn match z80Inst "\s\+jp\s\+mi\=\>" "Match M MI
@@ -49,56 +46,15 @@ syn match z80Inst "\s\+ret\s\+sn\=f\>" "Match SF SNF
 " Registers
 syn keyword z80Reg af af' bc de hl ix ixh ixl iy iyh iyl
 syn keyword z80Reg sp a b c d e f h i l r
-"sjasmplus
-syn keyword z80Reg lx xl ly yl xh hx yh hy
 
 " Directives
-"syn keyword z80PreProc .emptyfill .export .outname .asc .background .bank
-"syn keyword z80PreProc .byt .rombanksize .db .dbcos .dbrnd .dbsin .define .def
-"syn keyword z80PreProc .ds .dsb .dstruct .dsw .dw .dwcos .dwrnd .dwsin .else
-"syn keyword z80PreProc .ende .endif .endm .endme .endr .endro .ends .endst
-"syn keyword z80PreProc .enum .equ .fail .fclose .fopen .fread .fsize .if .ifdef
-"syn keyword z80PreProc .ifdefm .ifeq .ifexists .ifgr .ifgreq .ifle .ifleeq .ifndef
-"syn keyword z80PreProc .ifndefm .ifneq .incbin .incdir .include .input .macro
-"syn keyword z80PreProc .memorymap .org .orga .printt .printv .ramsection .redefine
-"syn keyword z80PreProc .redef .repeat .rept .rombankmap .rombanks .seed .section
-"syn keyword z80PreProc .slot .struct .unbackground .undefine .undef .word
-"syn keyword z80PreProc .shift .sym .symbol
+syn keyword z80PreProc equ org map ds defs dw defw db defb module endmodule
+syn keyword z80PreProc include incbin macro endmacro repeat rept endrepeat endr
+syn keyword z80PreProc ifdef ifndef if else endif rotate defpage page echo error
 
-syn keyword z80PreProc align data db ds dsb dsw dw fsize instanceof read skip slot swap
-syn keyword z80PreProc defaultslot slotsize bankstotal banksize banks free force
-syn keyword z80PreProc semifree size superfree
-
-
-" sjasmplus directives
-syn keyword z80PreProc DEVICE ABYTE ABYTEC ABYTEZ ALIGN ASSERT BINARY BLOCK BYTE
-syn keyword z80PreProc DB DC DD DEFARRAY DEPHASE DEFB DEFD DEFDEVICE DEFINE
-syn keyword z80PreProc DEFM DEFS DEFW DEVICE DISP DISPLAY DM DS DUP DW DWORD 
-syn keyword z80PreProc DZ EMPTYTRD ENCODING END ENDLUA ENDMOD ENDT EDUP ENT EQU
-syn keyword z80PreProc ENDMODULE EXPORT FIELD FPOS INCBIN INCHOB INCLUDE INCLUDELUA 
-syn keyword z80PreProc INCTRD INSERT LABELSLIST LUA MAP MEMORYMAP MODULE ORG
-syn keyword z80PreProc OUTPUT PAGE PHASE REPT SAVEBIN SAVEHOB SAVESNA SAVETRD SHELLEXEC 
-syn keyword z80PreProc SIZE SLOT TEXTAREA UNPHASE WORD IF IFN IFDEF IFNDEF ELSE ENDIF
-syn keyword z80PreProc MACRO ENDM D24 
-
-" vasm directives
-syn keyword z80PreProc abyte addr align asc ascii asciiz assert
-syn keyword z80PreProc binary blk blkw byt byte 
-syn keyword z80PreProc data db dc defb defc defl defp defm defw dephs dephase ds dsb dsw 
-syn keyword z80PreProc end endif el else endm endmac endmacro endr endrepeat enrep extern even
-syn keyword z80PreProc fail fill 
-syn keyword z80PreProc global
-syn keyword z80PreProc if ifdef ifndef ifeq ifne ifgt iflt ifle incbin incdir include
-syn keyword z80PreProc list local 
-syn keyword z80PreProc mac macro mdat
-syn keyword z80PreProc nolist 
-syn keyword z80PreProc org
-syn keyword z80PreProc phase
-syn keyword z80PreProc rept repeat reserve rend rorg
-syn keyword z80PreProc section set spc string
-syn keyword z80PreProc text code
-syn keyword z80PreProc weak wor wrd word 
-syn keyword z80PreProc xdef xlib xref 
+syn keyword z80PreProc .equ .org .map .ds .defs .dw .defw .db .defb .module .endmodule
+syn keyword z80PreProc .include .incbin .macro .endmacro .repeat .rept .endrepeat .endr
+syn keyword z80PreProc .ifdef .ifndef .if .else .endif .rotate .defpage .page .echo .error
 
 " Strings
 syn region z80String start=/"/ skip=/\\"/ end=/"/ oneline
@@ -131,7 +87,6 @@ syn match z80Reg "(sp)"
 
 " Todo
 syn keyword	cTodo		contained TODO FIXME XXX
-
 
 " Comments
 syn match z80Comment ";.*$" contains=cTodo
