@@ -1,1 +1,1 @@
-autocmd BufNewFile,BufRead *.asm set filetype=z80
+autocmd BufNewFile,BufRead *.z80 set filetype=z80
