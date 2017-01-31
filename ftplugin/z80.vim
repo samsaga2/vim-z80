@@ -21,4 +21,4 @@ function! s:IndentLabel()
     let @@ = saved_unnamed_register
 endfunction
 
-inoremap <buffer> :normal! all b:IndentLabel()
+inoremap <buffer> :normal! all s:IndentLabel()
