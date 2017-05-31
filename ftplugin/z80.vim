@@ -10,10 +10,10 @@ setlocal shiftwidth=8
 setlocal foldmethod=marker
 setlocal commentstring=;;%s
 
-function! b:IndentLabel()
+function! s:IndentLabel()
     let saved_unnamed_register = @@
 
-    if getline('.') =~ "^\s*[a-zA-Z0-9_.]+:$" then
+    if getline('.') =~ "^\s*[a-zA-Z0-9_.]+:$"
         echom "ok"
         normal! V:s/\s+//g
     endif
@@ -21,4 +21,4 @@ function! b:IndentLabel()
     let @@ = saved_unnamed_register
 endfunction
 
-inoremap <buffer> :normal! all b:IndentLabel()
+inoremap <buffer> :normal! all s:IndentLabel()
