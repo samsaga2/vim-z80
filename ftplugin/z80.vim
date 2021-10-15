@@ -1,24 +1,32 @@
-if exists("b:loaded_ftplugin")
-   finish
+" borrowed from https://github.com/philj56/vim-asm-indent/blob/master/indent/asm.vim
+if exists("b:did_indent")
+        finish
 endif
+let b:did_indent = 1
 
-let b:loaded_ftplugin=1
+setlocal indentexpr=GetAsmIndent()
+setlocal indentkeys=<:>,!^F,o,O
 
-setlocal tabstop=8
-setlocal shiftwidth=8
+let s:cpo_save = &cpo
+set cpo&vim
 
-setlocal foldmethod=marker
-setlocal commentstring=;;%s
-
-function! s:IndentLabel()
-    let saved_unnamed_register = @@
-
-    if getline('.') =~ "^\s*[a-zA-Z0-9_.]+:$"
-        echom "ok"
-        normal! V:s/\s+//g
-    endif
-
-    let @@ = saved_unnamed_register
+function s:buffer_shiftwidth()
+        return shiftwidth()
 endfunction
 
-inoremap <buffer> :normal! all s:IndentLabel()
+function! GetAsmIndent()
+        let line = getline(v:lnum)
+        let ind = s:buffer_shiftwidth()
+
+        " If the line is a label (starts with ':' terminated keyword), 
+        " then don't indent
+
+    if line =~ '\v\s*[a-zA-Z0-9\.]+:'
+                let ind = 0
+        endif
+
+        return ind
+endfunction
+
+let &cpo = s:cpo_save
+unlet s:cpo_save
